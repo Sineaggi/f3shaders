@@ -1,0 +1,6 @@
+SKIN2000.p (all?)       |              normal outdoor skin diffuse
+SLS2047.p (17)          |              normal outdoor skin specular
+ISCinematic (7)         |              normal tone-mapping
+ISCinematic+HDR (17)    |              HDR + bloom tone-mapping
+2017                    |              outdoor/indorr one?-light standard materials
+2023                    |              indoor/outdoor multilight
