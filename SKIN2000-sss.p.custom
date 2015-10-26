@@ -1,0 +1,72 @@
+ps_2_x
+def c0, -1, 0, 1, -0.5
+def c2, 2, 0, 0, 0
+dcl t0.xy
+dcl_centroid t6.xyz
+dcl v0.xyz
+dcl v1
+dcl_centroid t1.xyz
+dcl t7
+dcl t5
+dcl_2d s1
+dcl_2d s2
+dcl_2d s3
+dcl_2d s4
+texld r0, t0, s4
+mov r1.w, c0.x
+add r1.x, r1.w, c1.w
+cmp r1.x, r1.x, c0.y, c0.z
+add r1.y, r0.w, -c27.w
+mul r1, r1.x, r1.y
+texkill r1
+texld r1, t0, s1
+texld r2, t0, s3
+texld r3, t0, s2
+add r1, r1, c0.w
+add r1, r1, r1
+dp4 r1.w, r1, r1
+rsq r1.w, r1.w
+mul r1.xyz, r1.w, r1
+dp3_sat r1.w, r1, t6
+dp3_sat r2.w, r1, t1
+add r3.w, -r1.w, c0.z
+mul r3.w, r3.w, r3.w
+mov r1.xyz, t6
+dp3_sat r1.x, r1, -t1
+mul r3.w, r3.w, r1.x
+mul r1.xyz, r3.w, c3
+mul r1.xyz, r1, -c0.w
+mad r1.xyz, c3, r2.w, r1
+add r1.xyz, r1, c1
+max r4.xyz, r1, c0.y
+add r1.xyz, r2, r2
+add r2.xyz, r3, c0.w
+mul r1.xyz, r1, r2
+mad r0.xyz, r1, c2.x, r0
+mul r1.w, r0.w, c1.w
+add r0.xyz, r0, r0
+mul r2.xyz, r0, v0
+cmp r0.xyz, -c27.x, r0, r2
+mad r2.xyz, r4, -r0, v1
+mul r0.xyz, r0, r4
+mad r2.xyz, v1.w, r2, r0
+cmp r1.xyz, -c27.y, r0, r2
+dsx r0, t7
+abs r0, r0
+dsy r2, t7
+abs r2, r2
+add r3, r0, r2
+dp3 r3.x, r3, r3
+dsx r0, t5
+abs r0, r0
+dsy r2, t5
+abs r2, r2
+add r1, r0, r2
+dp3 r1.x, r1, r1
+rcp r1.x, r1.x
+mul r1.x, r1.x, r3.x
+mov r1.y, r1.x
+mov r1.z, r1.x
+mov oC0, r1
+
+// approximately 40 instruction slots used (4 texture, 36 arithmetic)
